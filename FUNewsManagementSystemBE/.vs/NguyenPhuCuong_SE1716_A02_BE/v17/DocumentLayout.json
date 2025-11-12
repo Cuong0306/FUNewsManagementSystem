@@ -1,0 +1,137 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|c:\\users\\acer\\desktop\\123\\cn8\\prn232\\as2\\funewsmanagementsystembe\\funewsmanagementsystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|solutionrelative:funewsmanagementsystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|c:\\users\\acer\\desktop\\123\\cn8\\prn232\\as2\\funewsmanagementsystembe\\funewsmanagementsystem.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|solutionrelative:funewsmanagementsystem.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|c:\\users\\acer\\desktop\\123\\cn8\\prn232\\as2\\funewsmanagementsystembe\\funewsmanagementsystem.api\\controllers\\newsarticlecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|solutionrelative:funewsmanagementsystem.api\\controllers\\newsarticlecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|c:\\users\\acer\\desktop\\123\\cn8\\prn232\\as2\\funewsmanagementsystembe\\funewsmanagementsystem.api\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|solutionrelative:funewsmanagementsystem.api\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|c:\\users\\acer\\desktop\\123\\cn8\\prn232\\as2\\funewsmanagementsystembe\\funewsmanagementsystem.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|solutionrelative:funewsmanagementsystem.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|c:\\users\\acer\\desktop\\123\\cn8\\prn232\\as2\\funewsmanagementsystembe\\funewsmanagementsystem.api\\controllers\\tagcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|solutionrelative:funewsmanagementsystem.api\\controllers\\tagcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|c:\\users\\acer\\desktop\\123\\cn8\\prn232\\as2\\funewsmanagementsystembe\\funewsmanagementsystem.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1BCF0A3-9860-40E1-8D51-59177608100C}|FUNewsManagementSystem.API\\FUNewsManagementSystem.API.csproj|solutionrelative:funewsmanagementsystem.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\appsettings.json",
+              "RelativeDocumentMoniker": "FUNewsManagementSystem.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\appsettings.json",
+              "RelativeToolTip": "FUNewsManagementSystem.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-12T11:29:25.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TagController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\TagController.cs",
+              "RelativeDocumentMoniker": "FUNewsManagementSystem.API\\Controllers\\TagController.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\TagController.cs",
+              "RelativeToolTip": "FUNewsManagementSystem.API\\Controllers\\TagController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAABYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T11:37:53.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReportController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\ReportController.cs",
+              "RelativeDocumentMoniker": "FUNewsManagementSystem.API\\Controllers\\ReportController.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\ReportController.cs",
+              "RelativeToolTip": "FUNewsManagementSystem.API\\Controllers\\ReportController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAABcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T11:37:32.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NewsArticleController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\NewsArticleController.cs",
+              "RelativeDocumentMoniker": "FUNewsManagementSystem.API\\Controllers\\NewsArticleController.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\NewsArticleController.cs",
+              "RelativeToolTip": "FUNewsManagementSystem.API\\Controllers\\NewsArticleController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T11:34:07.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "FUNewsManagementSystem.API\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "FUNewsManagementSystem.API\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAgwFwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T11:30:56.871Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "FUNewsManagementSystem.API\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "FUNewsManagementSystem.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T11:39:45.32Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "FUNewsManagementSystem.API\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\123\\Cn8\\PRN232\\As2\\FUNewsManagementSystemBE\\FUNewsManagementSystem.API\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "FUNewsManagementSystem.API\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAuwIkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T11:28:12.16Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
