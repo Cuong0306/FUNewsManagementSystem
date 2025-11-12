@@ -1,0 +1,9 @@
+# Các file tạm của Visual Studio / VSCode
+.vs/
+bin/
+obj/
+*.db
+*.db-shm
+*.db-wal
+*.vsidx
+node_modules/

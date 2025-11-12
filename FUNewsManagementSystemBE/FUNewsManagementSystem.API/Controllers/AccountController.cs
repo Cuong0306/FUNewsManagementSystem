@@ -23,7 +23,7 @@ namespace FUNewsManagementSystem.API.Controllers
 
         // ------------------ Get All ------------------
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         public async Task<IActionResult> GetAllAccounts()
         {
             try
@@ -40,7 +40,7 @@ namespace FUNewsManagementSystem.API.Controllers
 
         // ------------------ Get By Id ------------------
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         public async Task<IActionResult> GetAccountById(int id)
         {
             try
@@ -57,7 +57,7 @@ namespace FUNewsManagementSystem.API.Controllers
 
         // ------------------ Create ------------------
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         public async Task<IActionResult> CreateAccount([FromBody] CreateAccountRequest dto)
         {
             if (!ModelState.IsValid)
@@ -101,7 +101,7 @@ namespace FUNewsManagementSystem.API.Controllers
 
         // ------------------ Delete ------------------
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         public async Task<IActionResult> DeleteAccount(int id)
         {
             try
@@ -120,7 +120,7 @@ namespace FUNewsManagementSystem.API.Controllers
         }
 
         [HttpGet("search")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         public async Task<IActionResult> GetAccounts([FromQuery] string? name, [FromQuery] string? email)
         {
             var accounts = await _accountService.GetAllAccountsAsync();
