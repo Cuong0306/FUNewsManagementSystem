@@ -174,3 +174,4 @@ C:\Users\acer\Desktop\123\Cn8\PRN232\As2\FUNewsManagementSystemBE\FUNewsManageme
 C:\Users\acer\Desktop\123\Cn8\PRN232\As2\FUNewsManagementSystemBE\FUNewsManagementSystem.API\obj\Debug\net8.0\FUNewsManagementSystem.API.pdb
 C:\Users\acer\Desktop\123\Cn8\PRN232\As2\FUNewsManagementSystemBE\FUNewsManagementSystem.API\obj\Debug\net8.0\FUNewsManagementSystem.API.genruntimeconfig.cache
 C:\Users\acer\Desktop\123\Cn8\PRN232\As2\FUNewsManagementSystemBE\FUNewsManagementSystem.API\obj\Debug\net8.0\ref\FUNewsManagementSystem.API.dll
+C:\Users\acer\Desktop\123\Cn8\PRN232\As2\FUNewsManagementSystemBE\FUNewsManagementSystem.API\obj\Debug\net8.0\FUNewsManagementSystem.API.sourcelink.json

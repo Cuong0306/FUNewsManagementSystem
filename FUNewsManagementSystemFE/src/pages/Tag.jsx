@@ -1,6 +1,27 @@
-import { Table, Button, Modal, Form, Input, Space, Spin, message, Popconfirm, Descriptions } from "antd";
+import {
+  Table,
+  Button,
+  Modal,
+  Form,
+  Input,
+  Space,
+  Spin,
+  message,
+  Popconfirm,
+  Descriptions,
+  Typography,
+  Card,
+} from "antd";
 import { useState, useEffect } from "react";
-import TagService from "../services/TagService"; // Adjust path to your service file
+import {
+  PlusOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+} from "@ant-design/icons";
+import TagService from "../services/TagService";
+
+const { Title } = Typography;
 
 const Tag = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,7 +36,6 @@ const Tag = () => {
 
   const [form] = Form.useForm();
 
-  // Fetch all tags on component mount
   useEffect(() => {
     fetchTags();
   }, []);
@@ -25,7 +45,6 @@ const Tag = () => {
     try {
       const response = await TagService.getAllTags();
       if (response.data && response.data.statusCode === 200) {
-        // Map API response to component format
         const mappedTags = response.data.data.map((tag) => ({
           key: tag.tagId,
           name: tag.tagName,
@@ -59,7 +78,6 @@ const Tag = () => {
 
   const handleSave = async (values) => {
     if (isEditing && editingTag) {
-      // Update existing tag via API
       try {
         const updateData = {
           tagId: editingTag.key,
@@ -69,16 +87,14 @@ const Tag = () => {
         const response = await TagService.updateTag(editingTag.key, updateData);
         if (response.data && (response.data.statusCode === 200 || response.data.statusCode === 204)) {
           message.success("Tag updated successfully!");
-          // Refetch tags to update list
           await fetchTags();
         }
       } catch (error) {
         console.error("Failed to update tag:", error);
         message.error(error.response?.data?.message || "Failed to update tag!");
-        return; // Don't close modal on error
+        return;
       }
     } else {
-      // Create new tag via API
       try {
         const createData = {
           tagName: values.name,
@@ -87,13 +103,12 @@ const Tag = () => {
         const response = await TagService.createTag(createData);
         if (response.data && response.data.statusCode === 201) {
           message.success("Tag created successfully!");
-          // Refetch tags to update list
           await fetchTags();
         }
       } catch (error) {
         console.error("Failed to create tag:", error);
         message.error(error.response?.data?.message || "Failed to create tag!");
-        return; // Don't close modal on error
+        return;
       }
     }
     setIsModalOpen(false);
@@ -104,9 +119,9 @@ const Tag = () => {
 
   const handleEdit = (record) => {
     setEditingTag(record);
-    form.setFieldsValue({ 
-      name: record.name, 
-      description: record.description 
+    form.setFieldsValue({
+      name: record.name,
+      description: record.description,
     });
     setIsEditing(true);
     setIsModalOpen(true);
@@ -117,25 +132,12 @@ const Tag = () => {
       const response = await TagService.deleteTag(key);
       if (response.data && (response.data.statusCode === 200 || response.data.statusCode === 204)) {
         message.success("Tag deleted successfully!");
-        // Refetch tags to update list
         await fetchTags();
       }
     } catch (error) {
       console.error("Failed to delete tag:", error);
       message.error(error.response?.data?.message || "Failed to delete tag!");
     }
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-    form.resetFields();
-    setEditingTag(null);
-    setIsEditing(false);
-  };
-
-  const handleDetailCancel = () => {
-    setIsDetailModalOpen(false);
-    setSelectedTag(null);
   };
 
   const filteredTags = tags.filter(
@@ -145,22 +147,29 @@ const Tag = () => {
   );
 
   const columns = [
-    { title: "Name", dataIndex: "name", width: 200 },
-    { title: "Description", dataIndex: "description" },
+    { title: "Tag Name", dataIndex: "name", key: "name", width: 220 },
+    { title: "Description", dataIndex: "description", key: "description" },
     {
-      title: "Action",
+      title: "Actions",
+      key: "actions",
       render: (_, record) => (
         <Space>
-          <Button onClick={() => handleDetail(record.key)}>Detail</Button>
-          <Button onClick={() => handleEdit(record)}>Edit</Button>
+          <Button icon={<EyeOutlined />} onClick={() => handleDetail(record.key)}>
+            View
+          </Button>
+          <Button icon={<EditOutlined />} onClick={() => handleEdit(record)}>
+            Edit
+          </Button>
           <Popconfirm
             title="Delete Tag"
-            description="Are you sure to delete this tag?"
+            description="Are you sure you want to delete this tag?"
             onConfirm={() => handleDelete(record.key)}
             okText="Yes"
             cancelText="No"
           >
-            <Button danger>Delete</Button>
+            <Button danger icon={<DeleteOutlined />}>
+              Delete
+            </Button>
           </Popconfirm>
         </Space>
       ),
@@ -168,60 +177,117 @@ const Tag = () => {
   ];
 
   return (
-    <div style={{ padding: 40 }}>
-      <h2>Tag Management</h2>
-      <Space style={{ marginBottom: 20 }}>
-        <Button type="primary" onClick={() => setIsModalOpen(true)}>
-          Add Tag
-        </Button>
-      </Space>
-      <Input.Search
-        placeholder="Search by name or description"
-        onSearch={setSearchText}
-        enterButton
-        style={{ width: 300, marginBottom: 20 }}
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-      />
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #0f172a, #1e293b)",
+        padding: "50px 80px",
+        color: "white",
+      }}
+    >
+      <Card
+        style={{
+          background: "rgba(255, 255, 255, 0.05)",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          borderRadius: 12,
+          boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          padding: 30,
+        }}
+      >
+        <Title level={2} style={{ color: "white", marginBottom: 30 }}>
+          🏷️ Tag Management
+        </Title>
 
-      <Spin spinning={loading}>
-        <Table columns={columns} dataSource={filteredTags} rowKey="key" />
-      </Spin>
+        <Space style={{ marginBottom: 20 }}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => setIsModalOpen(true)}
+            style={{
+              borderRadius: 8,
+              background: "#2563eb",
+              border: "none",
+              fontWeight: "500",
+            }}
+          >
+            Add Tag
+          </Button>
+        </Space>
 
+        <Input.Search
+          placeholder="Search by name or description"
+          onSearch={setSearchText}
+          enterButton
+          style={{
+            width: 350,
+            marginBottom: 20,
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.2)",
+            borderRadius: 6,
+            color: "white",
+          }}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+
+        <Spin spinning={loading}>
+          <Table
+            columns={columns}
+            dataSource={filteredTags}
+            rowKey="key"
+            pagination={{ pageSize: 6 }}
+            style={{
+              background: "rgba(255, 255, 255, 0.02)",
+              borderRadius: 8,
+            }}
+          />
+        </Spin>
+      </Card>
+
+      {/* Add/Edit Modal */}
       <Modal
-        title={isEditing ? "Edit Tag" : "Add New Tag"}
+        title={isEditing ? "✏️ Edit Tag" : "➕ Add New Tag"}
         open={isModalOpen}
-        onCancel={handleCancel}
+        onCancel={() => {
+          setIsModalOpen(false);
+          form.resetFields();
+          setEditingTag(null);
+          setIsEditing(false);
+        }}
         footer={null}
+        centered
+        style={{ top: 80 }}
       >
         <Form form={form} layout="vertical" onFinish={handleSave}>
           <Form.Item
             name="name"
-            label="Name"
-            rules={[{ required: true, message: "Please enter name" }]}
+            label="Tag Name"
+            rules={[{ required: true, message: "Please enter tag name" }]}
           >
-            <Input />
+            <Input placeholder="Enter tag name" />
           </Form.Item>
-          <Form.Item
-            name="description"
-            label="Description"
-            rules={[{ required: false }]}
+          <Form.Item name="description" label="Description">
+            <Input.TextArea rows={3} placeholder="Enter description (optional)" />
+          </Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            block
+            style={{ borderRadius: 8, height: 40, fontWeight: 500 }}
           >
-            <Input.TextArea rows={3} />
-          </Form.Item>
-          <Button type="primary" htmlType="submit" block>
-            {isEditing ? "Update" : "Save"}
+            {isEditing ? "Update Tag" : "Save Tag"}
           </Button>
         </Form>
       </Modal>
 
       {/* Detail Modal */}
       <Modal
-        title="Tag Details"
+        title="📄 Tag Details"
         open={isDetailModalOpen}
-        onCancel={handleDetailCancel}
+        onCancel={() => setIsDetailModalOpen(false)}
         footer={null}
         width={600}
+        centered
       >
         <Spin spinning={detailLoading}>
           {selectedTag && (
@@ -229,7 +295,9 @@ const Tag = () => {
               <Descriptions.Item label="Tag ID">{selectedTag.tagId}</Descriptions.Item>
               <Descriptions.Item label="Name">{selectedTag.tagName}</Descriptions.Item>
               <Descriptions.Item label="Note">{selectedTag.note}</Descriptions.Item>
-              <Descriptions.Item label="Associated Articles">{selectedTag.newsArticles.length}</Descriptions.Item>
+              <Descriptions.Item label="Associated Articles">
+                {selectedTag.newsArticles.length}
+              </Descriptions.Item>
             </Descriptions>
           )}
         </Spin>

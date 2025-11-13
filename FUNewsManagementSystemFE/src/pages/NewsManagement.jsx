@@ -11,14 +11,24 @@ import {
   Tag,
   Descriptions,
   Popconfirm,
+  Card,
+  Typography,
 } from "antd";
 import { useState, useEffect } from "react";
+import {
+  PlusOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import NewsService from "../services/NewsService";
 import CategoryService from "../services/CategoryService";
 import AccountService from "../services/AccountService";
 
 const { TextArea } = Input;
 const { Option } = Select;
+const { Title } = Typography;
 
 const NewsManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,7 +47,6 @@ const NewsManagement = () => {
 
   const [form] = Form.useForm();
 
-  // === FETCH DATA ===
   useEffect(() => {
     fetchNews();
     fetchCategories();
@@ -57,13 +66,12 @@ const NewsManagement = () => {
           status: item.newsStatus,
           createdDate: item.createdDate,
           categoryName: item.categoryName,
-          fullData: item, // Lưu toàn bộ để dùng khi edit
+          fullData: item,
         }));
         setNewsList(mapped);
       }
     } catch (error) {
-      console.error("Failed to load news:", error);
-      message.error("Failed to load news articles!");
+      message.error("Failed to load news articles!", error);
     } finally {
       setLoading(false);
     }
@@ -76,8 +84,7 @@ const NewsManagement = () => {
       if (response.data?.statusCode === 200) {
         setCategories(response.data.data);
       }
-    } catch (error) {
-      console.error("Failed to load categories:", error);
+    } catch {
       message.error("Failed to load categories!");
     } finally {
       setCategoryLoading(false);
@@ -91,15 +98,13 @@ const NewsManagement = () => {
       if (response.data?.statusCode === 200) {
         setAccounts(response.data.data);
       }
-    } catch (error) {
-      console.error("Failed to load accounts:", error);
+    } catch {
       message.error("Failed to load user accounts!");
     } finally {
       setAccountLoading(false);
     }
   };
 
-  // === DETAIL HANDLER ===
   const handleDetail = async (id) => {
     setDetailLoading(true);
     setIsDetailModalOpen(true);
@@ -111,8 +116,7 @@ const NewsManagement = () => {
         message.error("News not found!");
         setIsDetailModalOpen(false);
       }
-    } catch (error) {
-      console.error("Failed to load news detail:", error);
+    } catch {
       message.error("Failed to load news detail!");
       setIsDetailModalOpen(false);
     } finally {
@@ -125,7 +129,6 @@ const NewsManagement = () => {
     setSelectedNews(null);
   };
 
-  // === EDIT HANDLER ===
   const handleEdit = (record) => {
     setEditingNews(record.fullData);
     form.setFieldsValue({
@@ -136,24 +139,21 @@ const NewsManagement = () => {
       categoryId: record.fullData.categoryId,
       newsStatus: record.status,
       createdById: record.fullData.createdById,
-      tagIds: record.fullData.tags?.map(t => t.tagId) || [],
+      tagIds: record.fullData.tags?.map((t) => t.tagId) || [],
     });
     setIsModalOpen(true);
   };
 
-  // === DELETE HANDLER ===
   const handleDelete = async (id) => {
     try {
       await NewsService.deleteNews(id);
       message.success("News deleted successfully!");
       fetchNews();
-    } catch (error) {
-      console.error("Delete failed:", error);
+    } catch {
       message.error("Failed to delete news article!");
     }
   };
 
-  // === MODAL HANDLERS ===
   const handleOpenAdd = () => {
     setEditingNews(null);
     form.resetFields();
@@ -166,10 +166,8 @@ const NewsManagement = () => {
     setEditingNews(null);
   };
 
-  // === SAVE (CREATE / UPDATE) ===
   const handleSave = async (values) => {
     const now = new Date().toISOString();
-
     const payload = {
       ...(editingNews && { newsArticleId: editingNews.newsArticleId }),
       newsTitle: values.newsTitle,
@@ -196,14 +194,12 @@ const NewsManagement = () => {
       fetchNews();
       handleCancel();
     } catch (error) {
-      console.error("Save failed:", error.response || error);
       message.error(
         error.response?.data?.message || "Failed to save news article!"
       );
     }
   };
 
-  // === SEARCH & FILTER ===
   const filteredNews = newsList.filter(
     (n) =>
       n.title?.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -211,47 +207,45 @@ const NewsManagement = () => {
       n.headline?.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  // === TABLE COLUMNS ===
   const columns = [
     { title: "Title", dataIndex: "title", width: 300 },
-    { title: "Author", dataIndex: "author", width: 120 },
+    { title: "Author", dataIndex: "author", width: 150 },
     { title: "Headline", dataIndex: "headline", ellipsis: true },
     {
       title: "Status",
       dataIndex: "status",
-      width: 100,
+      width: 120,
       render: (s) => (
         <Tag
-          color={
-            s === "Published" ? "green" : s === "Draft" ? "orange" : "red"
-          }
+          color={s === "Published" ? "green" : s === "Draft" ? "orange" : "red"}
         >
           {s}
         </Tag>
       ),
     },
-    { title: "Category", dataIndex: "categoryName", width: 130 },
+    { title: "Category", dataIndex: "categoryName", width: 150 },
     {
       title: "Action",
-      width: 250,
+      width: 220,
       render: (_, record) => (
         <Space>
-          <Button size="small" onClick={() => handleDetail(record.key)}>
-            Detail
-          </Button>
-          <Button size="small" onClick={() => handleEdit(record)}>
-            Edit
-          </Button>
+          <Button
+            size="small"
+            icon={<EyeOutlined />}
+            onClick={() => handleDetail(record.key)}
+          />
+          <Button
+            size="small"
+            icon={<EditOutlined />}
+            onClick={() => handleEdit(record)}
+          />
           <Popconfirm
             title="Delete this news?"
-            description="This action cannot be undone."
             onConfirm={() => handleDelete(record.key)}
             okText="Yes"
             cancelText="No"
           >
-            <Button size="small" danger>
-              Delete
-            </Button>
+            <Button size="small" danger icon={<DeleteOutlined />} />
           </Popconfirm>
         </Space>
       ),
@@ -259,41 +253,71 @@ const NewsManagement = () => {
   ];
 
   return (
-    <div style={{ padding: 40 }}>
-      <h2>News Management</h2>
+    <div
+      style={{
+        padding: 40,
+        background: "#f5f7fa",
+        minHeight: "100vh",
+      }}
+    >
+      <Card
+        style={{
+          borderRadius: 12,
+          boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+        }}
+        bodyStyle={{ padding: 30 }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            alignItems: "center",
+          }}
+        >
+          <Title level={3} style={{ margin: 0 }}>
+            📰 News Management
+          </Title>
+          <Space>
+            <Input
+              prefix={<SearchOutlined />}
+              placeholder="Search news..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              style={{ width: 250 }}
+            />
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={handleOpenAdd}
+            >
+              Add News
+            </Button>
+          </Space>
+        </div>
 
-      <Space style={{ marginBottom: 20 }}>
-        <Button type="primary" onClick={handleOpenAdd}>
-          Add News
-        </Button>
-      </Space>
+        <Spin spinning={loading}>
+          <Table
+            columns={columns}
+            dataSource={filteredNews}
+            rowKey="key"
+            scroll={{ x: 1200 }}
+            pagination={{ pageSize: 8 }}
+            bordered
+          />
+        </Spin>
+      </Card>
 
-      <Input.Search
-        placeholder="Search by title, author, or headline"
-        onSearch={setSearchText}
-        enterButton
-        style={{ width: 400, marginBottom: 20 }}
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-      />
-
-      <Spin spinning={loading}>
-        <Table
-          columns={columns}
-          dataSource={filteredNews}
-          rowKey="key"
-          scroll={{ x: 1300 }}
-          pagination={{ pageSize: 10 }}
-        />
-      </Spin>
-
-      {/* ADD / EDIT MODAL */}
+      {/* MODAL ADD / EDIT */}
       <Modal
-        title={editingNews ? "Edit News Article" : "Add New News Article"}
+        title={
+          editingNews ? "✏️ Edit News Article" : "📰 Add New News Article"
+        }
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
-        width={900}
+        width={800}
+        style={{ top: 30 }}
       >
         <Form form={form} layout="vertical" onFinish={handleSave}>
           <Form.Item
@@ -301,7 +325,7 @@ const NewsManagement = () => {
             label="Title"
             rules={[{ required: true, message: "Please enter title" }]}
           >
-            <Input />
+            <Input placeholder="Enter news title..." />
           </Form.Item>
 
           <Form.Item
@@ -309,7 +333,7 @@ const NewsManagement = () => {
             label="Headline"
             rules={[{ required: true, message: "Please enter headline" }]}
           >
-            <Input />
+            <Input placeholder="Short headline..." />
           </Form.Item>
 
           <Form.Item
@@ -317,7 +341,7 @@ const NewsManagement = () => {
             label="Content"
             rules={[{ required: true, message: "Please enter content" }]}
           >
-            <TextArea rows={6} />
+            <TextArea rows={6} placeholder="Write article content..." />
           </Form.Item>
 
           <Form.Item
@@ -325,13 +349,13 @@ const NewsManagement = () => {
             label="Source"
             rules={[{ required: true, message: "Please enter source" }]}
           >
-            <Input />
+            <Input placeholder="Source of news..." />
           </Form.Item>
 
           <Form.Item
             name="categoryId"
             label="Category"
-            rules={[{ required: true, message: "Please select a category" }]}
+            rules={[{ required: true, message: "Please select category" }]}
           >
             <Select
               loading={categoryLoading}
@@ -347,21 +371,17 @@ const NewsManagement = () => {
             </Select>
           </Form.Item>
 
-          {/* Chỉ hiện khi Add */}
           {!editingNews && (
             <Form.Item
               name="createdById"
               label="Created By (User)"
-              rules={[{ required: true, message: "Please select a user" }]}
+              rules={[{ required: true, message: "Please select user" }]}
             >
               <Select
                 loading={accountLoading}
                 placeholder="Select user"
                 showSearch
                 optionFilterProp="children"
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().includes(input.toLowerCase())
-                }
               >
                 {accounts.map((acc) => (
                   <Option key={acc.accountId} value={acc.accountId}>
@@ -388,7 +408,7 @@ const NewsManagement = () => {
             </Select>
           </Form.Item>
 
-          <Space style={{ marginTop: 20 }}>
+          <Space style={{ marginTop: 20, justifyContent: "end", width: "100%" }}>
             <Button onClick={handleCancel}>Cancel</Button>
             <Button type="primary" htmlType="submit">
               {editingNews ? "Update" : "Create"}
@@ -397,9 +417,9 @@ const NewsManagement = () => {
         </Form>
       </Modal>
 
-      {/* DETAIL MODAL */}
+      {/* MODAL DETAIL */}
       <Modal
-        title="News Article Details"
+        title="🧾 News Article Details"
         open={isDetailModalOpen}
         onCancel={handleDetailCancel}
         footer={null}
@@ -407,10 +427,7 @@ const NewsManagement = () => {
       >
         <Spin spinning={detailLoading}>
           {selectedNews && (
-            <Descriptions bordered column={1}>
-              <Descriptions.Item label="ID">
-                {selectedNews.newsArticleId}
-              </Descriptions.Item>
+            <Descriptions bordered column={1} labelStyle={{ width: 150 }}>
               <Descriptions.Item label="Title">
                 {selectedNews.newsTitle}
               </Descriptions.Item>
@@ -418,7 +435,15 @@ const NewsManagement = () => {
                 {selectedNews.headline}
               </Descriptions.Item>
               <Descriptions.Item label="Content">
-                <div style={{ maxHeight: 200, overflow: "auto" }}>
+                <div
+                  style={{
+                    maxHeight: 200,
+                    overflow: "auto",
+                    background: "#fafafa",
+                    padding: 10,
+                    borderRadius: 6,
+                  }}
+                >
                   {selectedNews.newsContent}
                 </div>
               </Descriptions.Item>
@@ -442,10 +467,7 @@ const NewsManagement = () => {
                 </Tag>
               </Descriptions.Item>
               <Descriptions.Item label="Created By">
-                {selectedNews.createdByName} (ID: {selectedNews.createdById})
-              </Descriptions.Item>
-              <Descriptions.Item label="Updated By">
-                {selectedNews.updatedByName} (ID: {selectedNews.updatedById})
+                {selectedNews.createdByName}
               </Descriptions.Item>
               <Descriptions.Item label="Created Date">
                 {new Date(selectedNews.createdDate).toLocaleString()}
@@ -455,7 +477,9 @@ const NewsManagement = () => {
               </Descriptions.Item>
               <Descriptions.Item label="Tags">
                 {selectedNews.tags?.length > 0
-                  ? selectedNews.tags.map((t) => t.tagName).join(", ")
+                  ? selectedNews.tags.map((t) => (
+                      <Tag key={t.tagId}>{t.tagName}</Tag>
+                    ))
                   : "None"}
               </Descriptions.Item>
             </Descriptions>
